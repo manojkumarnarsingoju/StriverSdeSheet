@@ -1,0 +1,51 @@
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &arr, int n)
+{
+    // step1: find break point  2 3 1 5 4
+    int i,j,ind=-1;
+    for( i=n-2;i>=0;i--){
+     if(arr[i]<arr[i+1]){
+         ind = i;
+         break;
+     }
+    }
+  if(ind==-1){
+    // for (int k = 0; k < n; k++) {
+    //   int temp = arr[k];
+    //   arr[k] = arr[n - k - 1];
+    //   arr[n - k - 1] = temp;
+    // }
+    reverse(arr.begin(),arr.end());
+    return arr;
+ }
+   
+    // step2: swap the break point to next greater element from back
+    for( j= n-1;j>ind;j--){
+      if (arr[j] > arr[ind]) {
+           int temp = arr[j];
+        arr[j] = arr[ind];
+          arr[ind] = temp;
+    
+        break;
+      }
+    }
+   
+    // for(int k =ind+1;k<n;k++){
+    //     int temp = arr[k];
+    //     arr[k] = arr[n-k-1];
+    //     arr[n-k-1]= temp;
+    // }
+    
+    reverse(arr.begin()+ind+1,arr.end());
+
+
+    // step 3: reverse the array from break point to end of the array , if no break point
+    // exist just reverse the array 
+    
+
+    //  Write your code here.
+return arr;
+
+
+
+}
