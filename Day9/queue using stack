@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+class Queue {
+    // Define the data members(if any) here.
+    private:
+    stack<int> inp;
+    stack<int > op;
+    public:
+    Queue() {
+        
+        // Initialize your data structure here.
+    }
+
+    void enQueue(int val) {
+        // Implement the enqueue() function.
+         inp.push(val);
+
+    }
+
+    int deQueue() {
+   if(!op.empty()){
+       int x = op.top();
+       op.pop();
+       return x;
+   }
+
+else {
+     if(inp.empty()){
+         return -1;
+     }
+     while (!inp.empty()) {
+       op.push(inp.top());
+       inp.pop();
+     }
+    int x = op.top();
+    op.pop();
+    return x;
+
+
+   }
+
+        // Implement the dequeue() function.
+    }
+
+    int peek() {
+
+          if(!op.empty()){
+       int x = op.top();
+      
+       return x;
+   }
+
+else {
+
+    if(inp.empty()){
+         return -1;
+     }
+     while (!inp.empty()) {
+       op.push(inp.top());
+       inp.pop();
+     }
+    int x = op.top();
+    return x;
+
+
+   }
+        // Implement the peek() function here.
+    }
+
+    bool isEmpty() {
+
+        return inp.empty()&&op.empty();
+        // Implement the isEmpty() function here.
+    }
+};
