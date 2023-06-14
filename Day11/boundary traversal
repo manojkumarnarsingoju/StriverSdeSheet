@@ -1,0 +1,41 @@
+  void addleft(TreeNode<int>* root, vector<int> &ans){
+        TreeNode<int>*curr = root->left;
+        while(curr){
+            if(!isleaf(curr)){ans.push_back(curr->data);}
+            if(curr->left){
+                curr = curr->left;
+                
+            }
+            else {
+                curr = curr->right;
+            }
+        }
+        
+    }
+    void addleaves(TreeNode<int>*root, vector<int> &ans){
+        TreeNode<int>*curr = root;
+        if(isleaf(curr)){
+            ans.push_back(curr->data);
+            return;
+        }
+      if(root->left)  addleaves(root->left,ans);
+      if(root->right) addleaves(root->right,ans);
+        
+    }
+       void addright(TreeNode<int>* root, vector<int> &ans){
+        TreeNode<int>*curr = root->right;
+        vector<int> level;
+        while(curr){
+            if(!isleaf(curr)){level.push_back(curr->data);}
+            if(curr->right){
+                curr = curr->right;
+                
+            }
+            else {
+                curr = curr->left;
+            }
+        }
+        reverse(level.begin(),level.end());
+        for(auto it: level){
+            ans.push_back(it);
+        }
