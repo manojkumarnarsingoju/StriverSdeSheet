@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+{
+	map<int,int> mpp;
+	pair<int,int> ans;
+	if(n==0){
+		return ans;
+	}
+	for(int i=1;i<=n;i++){
+
+		mpp[arr[i-1]]++;
+	}
+	for(int i=1;i<=n;i++){
+		if(mpp[i]==0){
+			ans.first = i;
+		}
+		else if(mpp[i]==2){
+			ans.second = i;
+		}
+	}
+	// Write your code here 
+	 return ans;
+}
