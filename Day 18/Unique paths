@@ -1,0 +1,11 @@
+#include <bits/stdc++.h> 
+int uniquePaths(int m, int n) {
+	// Write your code here.
+	int nn = m +n-2;
+	int rr = n-1;
+	long long int res = 1;
+	for(int i=1;i<=rr;i++){
+		res = res *(nn-rr+i)/i;
+	}
+	return (int)res;
+}
