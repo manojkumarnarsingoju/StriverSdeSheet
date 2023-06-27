@@ -1,0 +1,28 @@
+Node *firstNode(Node *head)
+{
+
+
+
+ Node *slow = head;
+ Node *fast = head;
+ Node *dummy = head;
+ while(fast&&fast->next){
+     slow = slow->next;
+     fast = fast->next->next;
+     if(slow==fast){
+ while(slow!=dummy){
+     slow = slow->next;
+     dummy = dummy->next;
+ }
+ return slow;
+     }
+ }     
+
+
+ return NULL;
+
+
+
+
+    //    Write your code here.
+}
