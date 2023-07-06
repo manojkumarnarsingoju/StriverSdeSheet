@@ -1,0 +1,26 @@
+*********************************************************/
+TreeNode<int> *construct(vector<int> &preorder,int ps,int pe,
+vector<int> &inorder,int ins, int ine,map<int,int> &mpp){
+  if(ps>pe || ins>ine){
+      return NULL;
+  }
+  TreeNode<int> *root = new TreeNode<int>(preorder[ps]);
+  int elem = mpp[root->data];
+  int nelem = elem - ins;
+
+  root->left = construct(preorder,ps+1,ps+nelem,inorder,ins,elem-1,mpp);
+  root->right = construct(preorder,ps+nelem+1,pe,inorder,elem+1,ine,mpp);
+  return root;
+
+}
+
+TreeNode<int> *buildBinaryTree(vector<int> &inorder, vector<int> &preorder)
+{
+    int ps =0,pe= preorder.size()-1, ins = 0, ine = inorder.size()-1;
+    map<int, int> mpp;
+    for(int i = ins;i<=ine;i++){
+        mpp[inorder[i]]=i;
+    }
+    return construct(preorder, ps, pe, inorder, ins,ine, mpp);
+	//    Write your code here
+}
