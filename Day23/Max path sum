@@ -1,0 +1,19 @@
+long long int findmax( TreeNode<int> *root, long long  int &maxi){
+
+  if (root == NULL) {
+    return 0;
+  }
+  long long int left = findmax(root->left, maxi);
+   long long int right = findmax(root->right, maxi); 
+  maxi = max(maxi, left+right + root->val);
+  return root->val + max(left, right);
+}
+long long int findMaxSumPath(TreeNode<int> *root) {
+  long long int maxi = 0;
+  if(root==NULL|| root->left==NULL||root->right==NULL){
+      return -1;
+  }
+    findmax(root, maxi);
+    return maxi;
+    // Write your code here.
+}
