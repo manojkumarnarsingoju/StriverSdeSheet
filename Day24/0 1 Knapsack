@@ -1,0 +1,34 @@
+
+#include<bits/stdc++.h>
+
+int func(int ind, int w, vector<int> &val, vector<int> wt, int n,vector<vector<int>> &dp){
+
+
+   if(ind==0){
+           if(wt[ind]<=w){
+			   return  val[ind]; 
+		   }
+		   else {
+			   return 0;
+		   }
+   }
+   if(dp[ind][w]!=-1){
+	   return dp[ind][w];
+   }
+
+	int nt = func(ind-1,w, val , wt, n ,dp); 
+
+	int t =INT_MIN;
+	if(wt[ind]<=w){
+		t = val[ind] + func(ind-1,w-wt[ind],val, wt, n,dp);
+	}
+	return dp[ind][w]= max(nt, t); 
+}
+
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{
+	// Write your code here
+	vector<vector<int>> dp(n, vector<int>(w+1,-1));
+    int ind = n-1;
+ return func(ind, w, val, wt, n ,dp);
+}
