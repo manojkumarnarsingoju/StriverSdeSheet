@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+int func(int ind,int prev, vector<int> &arr,int n,vector<vector<int>>&dp){
+   
+   if(ind == n){
+	   return 0;
+   }
+   if(dp[ind][prev+1]!=-1){
+	   return dp[ind][prev+1];
+   }
+  
+   int nt = func(ind+1, prev, arr, n,dp);
+   int t = INT_MIN; 
+   if(arr[ind]>arr[prev]|| prev==-1){
+	   t = arr[ind] + func(ind+1,ind,arr, n,dp); 
+   }
+   return dp[ind][prev+1] = max(nt, t);
+}
+int maxIncreasingDumbbellsSum(vector<int> &rack, int n)
+{
+    int ind =0;
+	int prev =-1;
+	vector<vector<int>> dp(n, vector<int>(n+1,-1));
+	return func(ind,prev, rack, n,dp);
+	// Write your code here
+}
