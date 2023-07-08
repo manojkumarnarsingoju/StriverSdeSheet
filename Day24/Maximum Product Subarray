@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+int maximumProduct(vector<int> &arr, int n)
+{
+	// Write your code here
+	int ml = arr[0];
+	int mr = arr[0]; 
+	int prod = 1; 
+    bool zero = false;
+	for(int i=0;i<n;i++){
+		prod*=arr[i];
+		if(arr[i]==0){
+			zero = true;
+			prod =1; 
+			continue;
+		}
+		ml = max(ml, prod);
+	}
+	prod =1; 
+		for(int i=n-1;i>=0;i--){
+		prod*=arr[i];
+		if(arr[i]==0){
+			zero = true;
+			prod =1; 
+			continue;
+		}
+		mr = max(mr, prod);
+	}
+	if(zero == true){
+		return max(max(ml,mr),0);
+	}
+	return max(ml, mr);
+}
